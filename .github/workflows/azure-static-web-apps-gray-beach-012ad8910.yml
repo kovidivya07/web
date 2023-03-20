@@ -1,45 +1,118 @@
-name: Azure Static Web Apps CI/CD
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - main
-
-jobs:
-  build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
-    name: Build and Deploy Job
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-      - name: Build And Deploy
-        id: builddeploy
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_BEACH_012AD8910 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
-          action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./src" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "./src" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
-
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    steps:
-      - name: Close Pull Request
-        id: closepullrequest
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_BEACH_012AD8910 }}
-          action: "close"
+<body>
+ <div class=”Cart-Container”></div>
+</body>
+body{
+ margin: 0;
+ padding: 0;
+ background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
+ height: 100vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.Cart-Container{
+ width: 70%;
+ height: 85%;
+ background-color: #ffffff;
+ border-radius: 20px;
+ box-shadow: 0px 25px 40px #1687d933;
+}
+<div class=”Header”>
+ <h3 class=”Heading”>Shopping Cart</h3>
+ <h5 class=”Action”>Remove all</h5>
+ </div>
+ .Header{
+ margin: auto;
+ width: 90%;
+ height: 15%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+.Heading{
+ font-size: 20px;
+ font-family: ‘Open Sans’;
+ font-weight: 700;
+ color: #2F3841;
+}
+.Action{
+ font-size: 14px;
+ font-family: ‘Open Sans’;
+ font-weight: 600;
+ color: #E44C4C;
+ cursor: pointer;
+ border-bottom: 1px solid #E44C4C;
+}
+<div class=”Cart-Items”>
+ <div class=”image-box”>
+ <img src=”images/apple.png” style={{ height=”120px” }} />
+ </div>
+ <div class=”about”>
+ <h1 class=”title”>Apple Juice</h1>
+ <h3 class=”subtitle”>250ml</h3>
+ <img src=”images/veg.png” style={{ height=”30px” }}/>
+ </div>
+ <div class=”counter”></div>
+ <div class=”prices”></div>
+ </div>
+ .Cart-Items{
+ margin: auto;
+ width: 90%;
+ height: 30%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+.image-box{
+ width: 15%;
+ text-align: center;
+}
+.about{
+ height: 100%;
+}
+.title{
+ padding-top: 5px;
+ line-height: 10px;
+ font-size: 32px;
+ font-family: ‘Open Sans’;
+ font-weight: 800;
+ color: #202020;
+}
+.subtitle{
+ line-height: 10px;
+ font-size: 18px;
+ font-family: ‘Open Sans’;
+ font-weight: 600;
+ color: #909090;
+}
+<div class=”counter”>
+ <div class=”btn”>+</div>
+ <div class=”count”>2</div>
+ <div class=”btn”>-</div>
+ </div>
+ .counter{
+ width: 15%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+.btn{
+ width: 40px;
+ height: 40px;
+ border-radius: 50%;
+ background-color: #d9d9d9;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 20px;
+ font-family: ‘Open Sans’;
+ font-weight: 900;
+ color: #202020;
+ cursor: pointer;
+}
+.count{
+ font-size: 20px;
+ font-family: ‘Open Sans’;
+ font-weight: 900;
+ color: #202020;
+}
